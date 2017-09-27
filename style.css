@@ -1,7 +1,19 @@
+.wrapper{
+	width:80%;
+}
 h1{
 	margin-bottom: 15px;
 	font-size: 60px;
 	background-color:black;
 	color:white;
 	text-align:center;
+}
+#content{
+	background:blue;
+	text-align:center;
+	padding: 40px;
+	margin-right:10%;
+	margin-left:10%;
+	font-size:25px;
+
 }
