@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Trivia Game</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<section>
+			<div class="text_line" id="title"></div>
+			<div class="text_line" id="timer"></div>
+			<div class="text_line" id="question"></div>
+			<div class="text_line" id="picture_line"></div>
+			<div class="option_line" id="option_line_1"></div>
+			<div class="option_line" id="option_line_2"></div>
+			<div class="option_line" id="option_line_3"></div>
+			<div class="option_line" id="option_line_4"></div>
+		</section>
+	
+		<script>
+			$(document).ready(function() {
+				var timer_seconds=30
+				var screens = {
+					"0":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"",
+						question:"",
+						picture_line:"",
+						option_line_1:"<b>Start!</b>",
+						option_line_2:"",
+						option_line_3:"",
+						option_line_4:"",
+						answer:"option_line_1",
+						result_screen:true,
+						endscreen:false,
+					},
+					"1":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"What will the title of the next xpac be?",
+						picture_line:"",
+						option_line_1:"<b>South Seas</b>",
+						option_line_2:"<b>Warlords of Argus</b>",
+						option_line_3:"<b>Wrath of the Old Gods</b>",
+						option_line_4:"<b>I Don't Know</b>",
+						answer:"option_line_4",
+						result_screen:false,
+						endscreen:false,
+					},
+					"2":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"What will the title of the next xpac be??",
+						picture_line:"",
+						option_line_1:"<b>The Answer was 'I Don't Know'</b>",
+						option_line_2:"",
+						option_line_3:"",
+						option_line_4:"",
+						answer:"option_line_1",
+						result_screen:true,
+						endscreen:false,
+					},
+					"3":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"What new race will be added?",
+						picture_line:"",
+						option_line_1:"<b>Shadow Elves</b>",
+						option_line_2:"<b>Ethereals</b>",
+						option_line_3:"<b>Fel Pandas</b>",
+						option_line_4:"<b>I Don't Know</b>",
+						answer:"option_line_4",
+						result_screen:false,
+						endscreen:false,
+					},
+					"4":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"What new race will be added?",
+						picture_line:"",
+						option_line_1:"<b>The Answer was 'I Don't Know'</b>",
+						option_line_2:"",
+						option_line_3:"",
+						option_line_4:"",
+						answer:"option_line_1",
+						result_screen:true,
+						endscreen:false,
+					},
+					"5":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"Who will be the big baddy?",
+						picture_line:"",
+						option_line_1:"<b>N'Zoth</b>",
+						option_line_2:"<b>Jaina</b>",
+						option_line_3:"<b>Nomi</b>",
+						option_line_4:"<b>I Don't Know</b>",
+						answer:"option_line_4",
+						result_screen:false,
+						endscreen:false,
+					},
+					"6":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"Who will be the big baddy?",
+						picture_line:"",
+						option_line_1:"<b>The Answer was 'I Don't Know'</b>",
+						option_line_2:"",
+						option_line_3:"",
+						option_line_4:"",
+						answer:"option_line_1",
+						result_screen:true,
+						endscreen:false,
+					},
+					"7":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"Will Khadgar help us?",
+						picture_line:"",
+						option_line_1:"<b>Yes</b>",
+						option_line_2:"<b>No</b>",
+						option_line_3:"<b>Maybe</b>",
+						option_line_4:"<b>I Don't Know</b>",
+						answer:"option_line_2",
+						result_screen:false,
+						endscreen:false,
+					},
+					"8":{
+						title:"<b>NEXT EXPANSION</b>",
+						timer:"Time Remaining: "+timer_seconds+" Seconds",
+						question:"Will Khadgar help us?",
+						picture_line:"",
+						option_line_1:"<b>Ofcourse not! He never helps!</b>",
+						option_line_2:"",
+						option_line_3:"",
+						option_line_4:"",
+						answer:"option_line_1",
+						result_screen:true,
+						endscreen:true,
+					},
+
+				}
+				var display_screen = 0
+				var user_answer = ""
+				var correct = false
+				update_display()
+
+
+
+
+				$(".option_line").on("click",onclick)
+
+				function check_answer(){
+					console.log(timer_seconds)
+					var result = false
+					if(user_answer==screens[display_screen].answer){
+						result = true
+					}
+					console.log("check_answer: "+result)
+					return result
+				}
+
+				function next_screen(){
+					if(screens[display_screen].endscreen==false){
+						console.log(timer_seconds)
+
+						display_screen++
+						console.log("next_screen")
+						if(screens[display_screen].result_screen==false){
+							start_timer()
+						}
+						console.log(timer_seconds)
+						update_display()
+					}
+				}
+
+				function update_display(){
+					console.log(timer_seconds)
+					console.log("update_display")
+					console.log(display_screen)
+					$("#title").html(screens[display_screen].title)
+					$("#timer").html(screens[display_screen].timer)
+					$("#question").html(screens[display_screen].question)
+					$("#picture_line").html(screens[display_screen].picture_line)
+					$("#option_line_1").html(screens[display_screen].option_line_1)
+					$("#option_line_2").html(screens[display_screen].option_line_2)
+					$("#option_line_3").html(screens[display_screen].option_line_3)
+					$("#option_line_4").html(screens[display_screen].option_line_4)
+					console.log(timer_seconds)
+				}
+
+
+				function onclick(wtf){
+					console.log(timer_seconds)
+					console.log("onclick")
+					stop_timer()
+					var selection=wtf.currentTarget.attributes[1].nodeValue
+					var selection_html = wtf.currentTarget.innerHTML
+					// console.log(selection)
+					// console.log(selection_html)
+					user_answer=selection
+					correct = check_answer()
+					if(screens[display_screen].result_screen==false){
+						if(correct==true){
+							screens[display_screen+1].question="Correct!"
+						}
+						else{
+							screens[display_screen+1].question="Wrong!"
+						}
+					}
+					next_screen()
+				}
+				var intervalId;
+				function out_of_time(){
+					console.log("out_of_time")
+					clearInterval(intervalId)
+				}
+				function stop_timer(){
+					console.log("stop_timer")
+					clearInterval(intervalId)
+				}
+				function start_timer(){
+					console.log("start_timer")
+					timer_seconds=30
+					intervalId=setInterval(count_down,1000)
+				}
+				function count_down(){
+					console.log("count_down")
+					timer_seconds--
+					screens[display_screen].timer="Time Remaining: "+timer_seconds+" Seconds"
+					if(screens[display_screen+1].result_screen==true){
+						screens[display_screen+1].timer="Time Remaining: "+timer_seconds+" Seconds"
+					}
+					update_display()
+					console.log(timer_seconds)
+					if(timer_seconds==0){
+						out_of_time()
+					}
+				}
+
+
+
+			})
+
+
+
+
+
+		</script>
+
+
+
+	</body>
+	<footer>
+		
+	</footer>
