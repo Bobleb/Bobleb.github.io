@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy API</title>
+</head>
+
+<body>
+  <div id="images"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var queryURL = "http://www.dnd5eapi.co/api/spells/1";
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).done(function(spell) {
+      console.log(spell);
+
+    });
+  </script>
+
+</body>
+
+</html>

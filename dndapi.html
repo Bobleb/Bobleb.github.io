@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Tristan Ernhart</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	</head>
+	<body>
+		<section>
+			<div id="buttons_here"></div>
+		    <form id="search_form">
+		      <label for="search_input">Search for something</label>
+		      <input type="text" id="search_input"><br>
+
+		      <!-- Button triggers new movie to be added -->
+		      <input class="button_type" id="add_search" value="Search for something">
+		    </form>
+			<div id="display"></div>
+		</section>	
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	    <script type="text/javascript">
+
+
+			size = function(obj) {
+			    var size = 0, key;
+			    for (key in obj) {
+			        if (obj.hasOwnProperty(key)) size++;
+			    }
+			    return size;
+			};
+			window.started = false
+			if(started == false){
+		    	window.spells = {}
+		    	window.spell_names = []
+		    	for(i=1;i<306;i++){
+				    var queryURL = "http://www.dnd5eapi.co/api/spells/"+i;
+				    $.ajax({
+				      url: queryURL,
+				      method: 'GET'
+				    }).done(function(spell) {
+				      spells[spell.name]=spell
+				      spell_names.push(spell.name)
+				    });
+		    	}
+		    }
+		    if(started == false){
+		    	window.intervalId = setInterval(test,100)
+		    }
+	    	function test(){
+	    		//console.log("test: "+size(spells))
+	    		if(size(spells)==305){
+	    			started = true
+	    			console.log("LIVE")
+	    			console.log(spells)
+	    			clearInterval(intervalId)
+	    		}
+	    	}
+	    	$(".button_type").on("click",function(event){
+	    		var output_objs = []
+	    		console.log($("#search_input").val())
+	    		var search_term = $("#search_input").val()
+	    		for(i=0;i<spell_names.length;i++){
+	    			//console.log(""+search_term+spell_names[i]+spell_names[i].includes(search_term))
+	    			if(spell_names[i].toLowerCase().includes(search_term)){
+	    				output_objs.push(spells[spell_names[i]])
+
+	    			}
+	    			//console.log(output_objs)
+	    		}
+	    		console.log(output_objs)
+
+
+
+
+
+
+
+
+
+	    	})
+
+
+
+
+	    </script>
+	</body>
+	<footer>
+		
+	</footer>
+</html>
