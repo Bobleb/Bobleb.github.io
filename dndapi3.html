@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Tristan Ernhart</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/dnd_style.css">
+	</head>
+	<body>
+    <section>
+      <div id="buttons_here"></div>
+        <form id="search_form">
+          <label for="search_input">Search for something</label>
+          <input type="text" id="search_input"><br>
+
+          <!-- Button triggers new movie to be added -->
+          <input class="button_type" id="add_search" value="Search for something">
+        </form>
+      <div id="display"></div>
+    </section>	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+
+
+
+
+
+
+
+  $(".button_type").on("click",function(event){
+    window.output_objs = []
+    console.log($("#search_input").val())
+    var search_term = $("#search_input").val()
+    for(i=0;i<spell_names.length;i++){
+      //console.log(""+search_term+spell_names[i]+spell_names[i].includes(search_term))
+      if(spell_names[i].toLowerCase().includes(search_term)){
+        if(typeof spells[spell_names[i]] != 'undefined'){
+          output_objs.push(spells[spell_names[i]])
+        }
+
+      }
+      //console.log(output_objs)
+    }
+    console.log(output_objs)
+    display()
+  })
+function display(){
+  $("#display").html("")
+  for(i=0;i<output_objs.length;i++){
+    $("#display").html($("#display").html()+"<div class = 'display_object'>")
+    console.log(output_objs[i].name)
+    if(typeof output_objs[i].name!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'name_line'>Name: "+output_objs[i].name+"</div>")
+    }
+    if(typeof output_objs[i].effect!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'effect_line'>Effect: "+output_objs[i].effect+"</div>")
+    }
+    if(typeof output_objs[i].type!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'type_line'>Spell Level : "+output_objs[i].type+"</div>")
+    }
+    if(typeof output_objs[i].components!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'components_line'>Components: "+output_objs[i].components+"</div>")
+    }
+    if(typeof output_objs[i].duration!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'duration_line'>Duration: "+output_objs[i].duration+"</div>")
+    }
+    if(typeof output_objs[i].save!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'save_line'>Save: "+output_objs[i].save+"</div>")
+    }
+    if(typeof output_objs[i].casting_time!=""){
+      $("#display").html($("#display").html()+"<div class = 'casting_time_line'>Casting time: "+output_objs[i].casting_time+"</div>")
+    }
+    if(typeof output_objs[i].range!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'range_line'>Range: "+output_objs[i].range+"</div>")
+    }
+    if(typeof output_objs[i].area!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'area_line'>Area: "+output_objs[i].area+"</div>")
+    }
+    if(typeof output_objs[i].description!=""){
+      console.log($("#display").html())
+      $("#display").html($("#display").html()+"<div class = 'description_line'>Description: "+output_objs[i].description+"</div>")
+    }
+    if(typeof output_objs[i].higher!=""){
+      $("#display").html($("#display").html()+"<div class = 'higher_line'>Higher level: "+output_objs[i].higher+"</div>")
+    }
+
+
+
+
+
+
+
+
+  }
+}
+
+
+
+var spell_names=["Animal Messenger","Acid Arrow","Aid","Acid Splash","Alarm","Animal Shapes","Animate Dead","Antimagic Field","Antilife Shell","Animate Objects","Antipathy/Sympathy","Arcane Eye","Arcane Hand","Arcane Lock","Arcane Sword","Arcanist's Magic Aura","Astral Projection","Augury","Awaken","Bane","Banishment","Barkskin","Beacon of Hope","Bestow Curse","Blade Barrier","Black Tentacles","Bless","Blight","Blindness/Deafness","Blink","Blur","Burning Hands","Call Lightning","Calm Emotions","Chain Lightning","Chill Touch","Charm Person","Alter Self","Circle of Death","Clairvoyance","Clone","Cloudkill","Color Spray","Commune","Command","Comprehend Languages","Commune with Nature","Cone of Cold","Confusion","Conjure Animals","Conjure Fey","Conjure Elemental","Conjure Woodland Beings","Contact Other Plane","Conjure Minor Elementals","Contagion","Contingency","Control Water","Control Weather","Continual Flame","Create Undead","Create or Destroy Water","Create Food and Water","Creation","Cure Wounds","Dancing Lights","Darkness","Darkvision","Daylight","Death Ward","Demiplane","Delayed Blast Fireball","Detect Evil and Good","Detect Poison and Disease","Detect Magic","Detect Thoughts","Dimension Door","Disguise Self","Disintegrate","Dispel Evil and Good","Dispel Magic","Divination","Divine Favor","Divine Word","Dominate Beast","Conjure Celestial","Dream","Dominate Monster","Dominate Person","Earthquake","Eldritch Blast","Enhance Ability","Enlarge/Reduce","Enthrall","Entangle","Expeditious Retreat","Etherealness","Fabricate","Faerie Fire","Faithful Hound","Eyebite","Fear","False Life","Find Steed","Feather Fall","Find the Path","Feeblemind","Find Traps","Finger of Death","Fireball","Fire Shield","Fire Storm","Flame Strike","Flaming Sphere","Flame Blade","Flesh to Stone","Floating Disk","Fly","Forcecage","Fog Cloud","Forbiddance","Foresight","Freedom of Movement","Freezing Sphere","Geas","Gaseous Form","Gate","Gentle Repose","Globe of Invulnerability","Giant Insect","Glibness","Glyph of Warding","Grease","Greater Invisibility","Greater Restoration","Guards and Wards","Guidance","Gust of Wind","Guiding Bolt","Hallucinatory Terrain","Hallow","Harm","Haste","Heal","Healing Word","Heroes' Feast","Heroism","Heat Metal","Hold Monster","Hideous Laughter","Hold Person","Holy Aura","Hypnotic Pattern","Ice Storm","Identify","Incendiary Cloud","Imprisonment","Illusory Script","Inflict Wounds","Insect Plague","Instant Summons","Invisibility","Jump","Irresistible Dance","Knock","Lesser Restoration","Legend Lore","Levitate","Light","Lightning Bolt","Locate Animals or Plants","Locate Creature","Locate Object","Longstrider","Magic Circle","Mage Armor","Mage Hand","Magic Jar","Magic Mouth","Magic Missile","Magic Weapon","Mass Cure Wounds","Mass Heal","Magnificent Mansion","Major Image","Mass Healing Word","Mass Suggestion","Meld into Stone","Maze","Meteor Swarm","Mending","Message","Mind Blank","Minor Illusion","Mirage Arcane","Mirror Image","Modify Memory","Misty Step","Mislead","Moonbeam","Move Earth","Nondetection","Pass without Trace","Phantasmal Killer","Planar Ally","Passwall","Phantom Steed","Planar Binding","Plane Shift","Polymorph","Plant Growth","Power Word Stun","Prayer of Healing","Power Word Kill","Prestidigitation","Prismatic Spray","Prismatic Wall","Programmed Illusion","Private Sanctum","Produce Flame","Protection from Energy","Protection from Evil and Good","Protection from Poison","Ray of Enfeeblement","Raise Dead","Purify Food and Drink","Ray of Frost","Regenerate","Reincarnate","Resilient Sphere","Resurrection","Resistance","Remove Curse","Revivify","Reverse Gravity","Sacred Flame","Rope Trick","Scorching Ray","Sanctuary","Scrying","Secret Chest","See Invisibility","Seeming","Sending","Sequester","Shapechange","Shatter","Shield","Shield of Faith","Shillelagh","Shocking Grasp","Silence","Silent Image","Simulacrum","Sleep","Sleet Storm","Speak with Animals","Slow","Speak with Dead","Speak with Plants","Spider Climb","Spike Growth","Stinking Cloud","Spirit Guardians","Spiritual Weapon","Stone Shape","Stoneskin","Storm of Vengeance","Suggestion","Symbol","Sunbeam","Sunburst","Telekinesis","Telepathic Bond","Teleport","Teleportation Circle","Thaumaturgy","Thunderwave","Time Stop","Tiny Hut","Tree Stride","Tongues","Transport via Plants","True Polymorph","True Resurrection","True Seeing","Vampiric Touch","Unseen Servant","True Strike","Wall of Fire","Wall of Force","Wall of Stone","Wall of Ice","Water Breathing","Wall of Thorns","Warding Bond","Water Walk","Weird","Wind Walk","Wind Wall","Web","Wish","Word of Recall","Zone of Truth","Project Image"]
+
+    var spells = {
+      "Acid Splash":{
+        name:"Acid Splash",
+        effect:"1d6 acid damage",
+        type:"Cantrip",
+        components:"Verbal, Somatic",
+        duration:"Instantaneous",
+        save:"Dexterity",
+        casting_time:"1 action",
+        range:"30 feet",
+        area:"2 targets in 5 feet of each other",
+        description:"You hurl a bubble of acid. Choose one creature within range, or choose two creatures within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 acid damage.",
+        higher:"2d6 at level 5, 3d6 at level 11 and 4d6 at level 11",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Aid":{
+        name:"Aid",
+        effect:"+5 max hit points and current hit points",
+        type:"2nd level abjuration",
+        components:"Verbal, Somatic, Material (a tiny strip of white cloth)",
+        duration:"8 hours",
+        save:"",
+        casting_time:"1 action",
+        range:"30 feet",
+        area:"3 targets in range",
+        description:"Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 fur the duration.",
+        higher:"+5 max hitpoints and current hit points for each spell level cast past 2nd level",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Alarm":{
+        name:"Alarm",
+        effect:"Mental alarm alerts you if a tiny or larger creature enters a warded area if you are within one mile.",
+        type:"1st level abjuration (ritual)",
+        components:"Verbal, Somatic, Material (a tiny bell and a piece of fine silver wire)",
+        duration:"8 hours",
+        save:"",
+        casting_time:"1 minute",
+        range:"30 feet",
+        area:"20-foot cube max",
+        description:"You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot-cube. Until the spell ends, an alarm alerts you whenever a Tiy or larger creature touches or enters the warded area. When you cast the spell, you can also choose wheter the alarm is mental or audible.<br>&nbsp&nbsp&nbsp&nbsp&nbspA mental alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. This ping awakens you if you are sleeping.<br>&nbsp&nbsp&nbsp&nbsp&nbspAn audible alarm produces the sound of a hand bell for 10 seconds within 60 feet.",
+        higher:"",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Alter Self":{
+        name:"Alter Self",
+        effect:"Change Appearance, Aquatic Adaption, or Natural Weapons",
+        type:"2nd level transmutation",
+        components:"Verbal, Somatic",
+        duration:"Concentration, up to 1 hour",
+        save:"",
+        casting_time:"1 action",
+        range:"self",
+        area:"",
+        description:"You assume a different form. When you cast the spell, choose one of the following options, the effects of which last for the duration of the spell. While the spell lasts, you can end one option as an action to gain the benefits of a different one.<br>&nbsp&nbsp&nbsp&nbsp&nbsp<b>Aquatic Adaption</b>You adap your body to an aquatic enviroment, sprouting gills and growing webbing between your fingers. You can breathe underwater and gain a swimming speed equal to your walking speed.<br>&nbsp&nbsp&nbsp&nbsp&nbsp<b>Change Appearance</b>You transform your appearance. You decide what you look like, including your heigh, weight, facial features, sound of your voice, hair length, coloration, and distinguishing characteristics, if any. You can make yourslf appear as a member of another race, though none of your statistics change. You also can't appear as a creature of a different size than you, and you can't use this spell to become a quadrupedal, for instance. At any time for the duration of the spell, you can use your action to change your appearance in this way again.<br>&nbsp&nbsp&nbsp&nbsp&nbsp<b>Natural Weapons</b>You grow claws, fangs, spines, horns, or a different natural weapon of your choice. Your unarmed strikes deal 1D6 bludgeoning piercing or slashing damage, as appropriate to the natural weapon you choose, and you are proficient with your unarmed strikes. Finally, the natural weapon is magic and you have a +1 bonus to the attack and damage rolls you make using it.",
+        higher:"",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Animal Friendship":{
+        name:"Animal Friendship",
+        effect:"Charm a beast. The spell fails if the beast's Intelligence is 4 or higher.",
+        type:"1st level enchantment",
+        components:"Verbal, Somatic, Material (a morsel of food)",
+        duration:"24 hours",
+        save:"Wisdom",
+        casting_time:"1 action",
+        range:"30 feet, within visual and audible range.",
+        area:"",
+        description:"This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spell ends.",
+        higher:"Charm an extra beast for each spell level past 1.",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Animal Messenger":{
+        name:"Animal Messenger",
+        effect:"Gets a critter to take a verbal message to someone.",
+        type:"2nd level enchantment (ritual)",
+        components:"Verbal, Somatic, Material (a morsel of food)",
+        duration:"24 hours",
+        save:"",
+        casting_time:"1 action",
+        range:"30 feet",
+        area:"",
+        description:"By means of this spell, you use an animal to deliver a message. Choose a Tiny beast you can see within range, such as a squirrel, a blue jay, or a bat. You specify a location, which you must have visited, and a recipient who matches a general description, such as 'a man or woman dressed in the uniform of the town guard' or 'a red-haired dwarf wearing a pointed hat.' You also speak a message of up to twenty-five words. The target beast travels for the durration of the spell towards the specified location covering about 50 miles per 24 hours for a flying messenger, or 25 miles for other animals.<br>&nbsp&nbsp&nbsp&nbsp&nbspWhen the messenger arrives, it delivers your message to the creature that you described, replicating the sound of your voice. The messenger speaks only to a creature mating the description you gave. If the messenger doesn't reach its destination before the spell ends, the message is lost, and the beast makes its way back to where you cast this spell.",
+        higher:"Increase the durration by 48 hours for each spell level past 2.",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Animal Shapes":{
+        name:"Animal Shapes",
+        effect:"Transform any nuber of willing creatures you can see withing range into a beast of challenge rating 4 or less.",
+        type:"8th level transmutation",
+        components:"Verbal, Somatic",
+        duration:"Concentration, up to 24 hours",
+        save:"",
+        casting_time:"1 action",
+        range:"30 feet",
+        area:"3 targets in range",
+        description:"Your magic turns others into beasts. Choose any number of willing creatures that you can see within range. You transform each target into the form of a Large or smaller beast with a challenge rating of 4 or lower. On subsequent turns, you can use your action to transform affected creatures into new forms.<br>&nbsp&nbsp&nbsp&nbsp&nbspThe transformation lasts for the duration for each target, or until the target drops to 0 hitpoints or dies. You can choose a different for for each target, A target's game statistics are replaced by the statistics of the chosen beast, though the target retains its alignment and Intelligence, Wisdom, and Charisma scores. The target assumes the hit points of its new form, and when it reverts to its normal form, it returns to the nuber of hitpoints it had before it transformed. If it reverts as a result of dropping to 0 hit points, any excess damage carries over to its normal form. As long as the excess damage doesn't reduce the creature's normal form to 0 hit points, it isn't knocked unconscious. The creature is limeted in the actions it can perform by the nature of its new form, and it can't speak or cast spells.<br>&nbsp&nbsp&nbsp&nbsp&nbspThe target's gear melts into the new form. The target can't activate, wield, or otherwise benefit from any of its equipment.",
+        higher:"",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Animate Dead":{
+        name:"Animate Dead",
+        effect:"This spell creates an undead servant from a corpse or pile of bones.",
+        type:"3rd level necromancy",
+        components:"Verbal, Somatic, Material (a drop of blood, a piece of flesh, and a pinch of bone dust)",
+        duration:"Instantaneous",
+        save:"",
+        casting_time:"1 minute",
+        range:"10 feet",
+        area:"",
+        description:"This spell creates an undead servant. Choose a pile of bones or a corpse of a Medum or Small humanoid within range. Your spell imbues the target with a foul mimicry of life, raising it as an undead creature. The target becomes a skeleton if you chose bones or a zombie if you chose a corpse (the DM has the creature's game statistics).<br>&nbsp&nbsp&nbsp&nbsp&nbspOn each of your turns, you can use a bonus action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move durring its net turn, or you can issue a general command, usch as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until tits task is complete.<br>&nbsp&nbsp&nbsp&nbsp&nbspThe creature is under your control for 24 hours, after which it stops obeying any command you've given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell, rather than animating a new one.",
+        higher:"Animate or reassert your control over 2 additional undead creatures for each spell level past 3.",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Animate Objects":{
+        name:"Animate Objects",
+        effect:"Animate 10 nonmagical objects within range.",
+        type:"5th level transmutation",
+        components:"Verbal, Somatic",
+        duration:"Concentration, up to 1 minute",
+        save:"",
+        casting_time:"1 action",
+        range:"120 feet",
+        area:"",
+        description:"Objects cocme to life at your command. Choose up to ten nonmagical objects within range that are not being worn or carried. Medium targets count as two objects, Large targets count as four objects, Huge targets cound as eight objects. You can't animate any object larger than Huge. Each target animates and becomes a creature under your control until the spell ends or until reduced to 0 hit points.<br>&nbsp&nbsp&nbsp&nbsp&nbspAs a bonus action, you can mentally command any creature you made with this spell if the creature is within 500 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move during its next turn, or you can issue a general command, such as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until its task is complete.<image class='description_image' src='assets/images/animated_object_statistics.png'></image><br>&nbsp&nbsp&nbsp&nbsp&nbspAn animated object is a construct with AC, hit points, attacks, Strength, and Dexterity determined by its size. Its Constitution is 10 and its Intelligence and Wisdom are 3, and its Charisma is 1. Its speed is 30 feet; if the object lacks legs or other appendages it can use for locomotion it instead has a flying speed of 30 feet and can hover. If the ovject is securly attacked to a surface or larger object, such as a chain bolted to a wall, its speed is 0. It has blindsight with a radius of 30 feet and is blind beyond that distance. When the animated object drops to 0 hitpoints, it reverts to its original object form, and any remaining damage carries over to its original object form.<br>&nbsp&nbsp&nbsp&nbsp&nbspIf you command an object to attack, it can make a single melee attack against a creature within 5 feet of it. It makes a slam attack with an attack bonus and bludgeoning damage determined by its size. The DM might rule that a specific object inflicts slashing or piercing damage based on its form.",
+        higher:"Animate two additional objects for each spell level past 5.",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+      "Antilife Shell":{
+        name:"Antilife Shell",
+        effect:"",
+        type:"5th level abjuration",
+        components:"Verbal, Somatic",
+        duration:"Concentration, up to 1 hour",
+        save:"",
+        casting_time:"1 action",
+        range:"self (10 foot radius)",
+        area:"10 foot radius",
+        description:"",
+        higher:"2d6 at level 5, 3d6 at level 11 and 4d6 at level 11",
+        placeholder1:"",
+        placeholder2:"",
+        placeholder3:"",
+        placeholder4:"",
+        placeholder5:"",
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+  </script>
+	</body>
+	<footer>
+		
+	</footer>
+</html>

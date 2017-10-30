@@ -53,6 +53,7 @@
 	    			started = true
 	    			console.log("LIVE")
 	    			console.log(spells)
+	    			$("#display").html(JSON.stringify(spells))
 	    			clearInterval(intervalId)
 	    		}
 	    	}
@@ -69,7 +70,7 @@
 	    			//console.log(output_objs)
 	    		}
 	    		console.log(output_objs)
-
+	    		
 
 
 
@@ -79,10 +80,6 @@
 
 
 	    	})
-
-
-
-
 	    </script>
 	</body>
 	<footer>
