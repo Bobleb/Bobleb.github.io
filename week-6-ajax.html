@@ -35,7 +35,7 @@
 				method:'GET'
 			}).done(function(response){
 				search_terms.push(search_term)
-				searches[searchterm]=response
+				searches[search_term]=response
 				for(i=0;i<size(response);i++){
 					$("#display").html($("#display").html()+"<image id='image"+i+"' src='"+response.i.images.original.url+"'></image>")
 				}
