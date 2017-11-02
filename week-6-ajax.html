@@ -33,20 +33,20 @@
 			$.ajax({
 				queryURL:queryURL,
 				method:'GET'
-			}).done(function(response){
-				console.log(response)
+			}).done(function(giphyresponse){
+				console.log(giphyresponse)
 				search_terms.push(search_term)
-				searches[search_term]=response
-				for(var propName in response){
+				searches[search_term]=giphyresponse
+				for(var propName in giphyresponse){
 					console.log(propName)
-					if(response.hasOwnProperty(propName)) {
-						console.log(response)
-						console.log(response.propName)
-						console.log(response.propName["images"])
-						console.log(response.propName["images"]["original"])
-						console.log(response.propName["images"]["original"]["url"])
+					if(giphyresponse.hasOwnProperty(propName)) {
+						console.log(giphyresponse)
+						console.log(giphyresponse.propName)
+						console.log(giphyresponse.propName["images"])
+						console.log(giphyresponse.propName["images"]["original"])
+						console.log(giphyresponse.propName["images"]["original"]["url"])
 						conosle.log("-------------------------------------")
-						$("#display").html($("#display").html()+"<image id='image"+propName+"' src='"+response.propName.images.original.url+"'></image>")
+						$("#display").html($("#display").html()+"<image id='image"+propName+"' src='"+giphyresponse.propName.images.original.url+"'></image>")
 					}
 					console.log($("#display").html())
 				}
