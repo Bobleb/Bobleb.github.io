@@ -13,7 +13,7 @@
           <input type="text" id="search_input"><br>
 
           <!-- Button triggers new movie to be added -->
-          <input class="button_type" id="add_search" value="Search for something">
+          <button>Search Button</button>
         </form>
       <div id="display"></div>
     </section>	
@@ -31,15 +31,17 @@
     window.output_objs = []
     console.log($("#search_input").val())
     var search_term = $("#search_input").val()
-    for(i=0;i<spell_names.length;i++){
-      //console.log(""+search_term+spell_names[i]+spell_names[i].includes(search_term))
-      if(spell_names[i].toLowerCase().includes(search_term)){
-        if(typeof spells[spell_names[i]] != 'undefined'){
-          output_objs.push(spells[spell_names[i]])
-        }
+    if(search_term!=""){
+      for(i=0;i<spell_names.length;i++){
+        //console.log(""+search_term+spell_names[i]+spell_names[i].includes(search_term))
+        if(spell_names[i].toLowerCase().includes(search_term)){
+          if(typeof spells[spell_names[i]] != 'undefined'){
+            output_objs.push(spells[spell_names[i]])
+          }
 
+        }
+        //console.log(output_objs)
       }
-      //console.log(output_objs)
     }
     console.log(output_objs)
     display()
