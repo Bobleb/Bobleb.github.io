@@ -34,6 +34,7 @@
 				queryURL:queryURL,
 				method:'GET'
 			}).done(function(response){
+				console.log(response)
 				search_terms.push(search_term)
 				searches[search_term]=response
 				for(var propName in response){
