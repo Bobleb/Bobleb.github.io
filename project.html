@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Title</title>
+		<!–– css link -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<!–– jquery link -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!–– moment link -->
+		<script src="https://cdn.jsdelivr.net/npm/moment@2.19.1/moment.min.js"></script>
+	</head>
+	<body>
+	    <button onclick='onclick1()'></button>
+	    <div id='hangman_image'></div>
+	    <div id="output1"></div>
+	    <div id="output2"></div>
+		<section>
+			<div>
+			    
+				
+			</div>
+		</section>
+		<!-- script start -->
+		<script>
+
+		
+		var words = ["alpha","bravo","charlie","delta","echo"]
+		var selected_word = words[Math.floor(Math.random()*words.length)]
+		console.log(selected_word)
+		
+		
+		
+		
+		var definition = ""
+		var gifs = []
+		// make a definition api call, set the definition of the word
+		
+		// make a giphy api call, set the url of the gifs
+		
+		
+		
+		var hidden_word = ""
+		var unhidden_word = ""
+		for(i=0;i<selected_word.length;i++){
+		    hidden_word = hidden_word+"_ "
+		    unhidden_word = unhidden_word+selected_word[i]+" "
+		}
+		$("#output1").html(hidden_word)
+		$("#output2").html(unhidden_word)
+		var xhr = new XMLHttpRequest()
+
+		var queryURL = "https://od-api.oxforddictionaries.com/api/v1/entries/en/"+selected_word
+		xhr.open('GET',queryURL,true)
+		xhr.setRequestHeader("app_id","57149bf5");
+		xhr.setRequestHeader("app_key","e2235610f6e6c61a251e9c3d7afecb78");
+		xhr.onreadystatechange = () => {
+			var response = JSON.parse(xhr.responseText);
+			console.log(response)
+		}
+
+
+
+
+
+
+
+
+
+		$.ajax({
+			url:queryURL,
+			method:'GET'
+		}).done(function(response){
+			console.log(response)
+
+
+
+
+
+
+		})
+
+		
+		
+		var hangman={
+		    limbs:{
+		        head:false,
+		        body:false,
+		        arm_left:false,
+		        arm_right:false,
+		        leg_left:false,
+		        leg_right:false,
+		        hand_left:false,
+		        hand_right:false,
+		        foot_left:false,
+		        foot_right:false,
+		        
+		    },
+		}
+		
+		function onclick1(){
+		    if(hangman.limbs.head==false){
+		    	hangman.limbs.head=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/head.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.body==false){
+		    	hangman.limbs.body=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/body.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.arm_left==false){
+		    	hangman.limbs.arm_left=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/arm_left.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.arm_right==false){
+		    	hangman.limbs.arm_right=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/arm_right.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.leg_left==false){
+		    	hangman.limbs.leg_left=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/leg_left.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.leg_right==false){
+		    	hangman.limbs.leg_right=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/leg_right.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.hand_left==false){
+		    	hangman.limbs.hand_left=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/hand_left.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.hand_right==false){
+		    	hangman.limbs.hand_right=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/hand_right.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.foot_left==false){
+		    	hangman.limbs.foot_left=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/foot_left.png'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		    if(hangman.limbs.foot_right==false){
+		    	hangman.limbs.foot_right=true
+		    	$("#hangman_image").html($("#hangman_image").html()+"<image class='body' src='assets/images/foot_right'></image>")
+		    	$(".body").style={
+		    		 position:'relative',
+		    		 max_height:'25%',
+		    		 max_width:'25%',
+		    		 top:'0',
+		    		 left:'0',
+		    	}
+		    	return;
+		    }
+		}
+
+		
+		
+		
+		
+		
+		    
+		    
+		    
+		    
+		</script>
+	</body>
+	<footer>
+		
+	</footer>
+</html>

@@ -11,9 +11,7 @@
         <form id="search_form">
           <label for="search_input">Search for something</label>
           <input type="text" id="search_input"><br>
-
-          <!-- Button triggers new movie to be added -->
-          <button>Search Button</button>
+          <button class='button_type'>Search Button</button>
         </form>
       <div id="display"></div>
     </section>	
@@ -28,14 +26,19 @@
 
 
   $(".button_type").on("click",function(event){
+    event.preventDefault();
+    console.log("here1")
     window.output_objs = []
     console.log($("#search_input").val())
     var search_term = $("#search_input").val()
     if(search_term!=""){
+      console.log("here2")
       for(i=0;i<spell_names.length;i++){
         //console.log(""+search_term+spell_names[i]+spell_names[i].includes(search_term))
         if(spell_names[i].toLowerCase().includes(search_term)){
+          console.log("here3")
           if(typeof spells[spell_names[i]] != 'undefined'){
+            console.log("here4")
             output_objs.push(spells[spell_names[i]])
           }
 
@@ -137,7 +140,7 @@ var spell_names=["Animal Messenger","Acid Arrow","Aid","Acid Splash","Alarm","An
         casting_time:"1 action",
         range:"30 feet",
         area:"3 targets in range",
-        description:"Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 fur the duration.",
+        description:"Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration.",
         higher:"+5 max hitpoints and current hit points for each spell level cast past 2nd level",
         placeholder1:"",
         placeholder2:"",
